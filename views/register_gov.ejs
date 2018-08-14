@@ -1,0 +1,36 @@
+<% include ./partials/header %>
+
+
+<div class="container" id="login_form">
+	
+	<div class="form-container">
+		<h4 >Register With Ministry Account</h4>
+
+		<form action="/register/gov" method="POST" id="gov_register">
+			<div>
+				<input type="text" name="departmentName" id="departmentName"  placeholder="Department Name*">
+			</div>
+			<div>
+				<input type="text" name="username" id="username"  placeholder="Username*">
+			</div>
+			<div>
+                <input  type="email" name="email" id="email" placeholder="Email Address*" >
+            </div>
+			<div>
+				<input  type="password" name="password" id="password"  placeholder="Password*">
+			</div>
+			<div>
+                <input id="confirm_password"  type="password" name="password_validation" id="password_validation" placeholder="Confirm Password*">
+            </div>
+			<div>
+				<input  type="password" name="ministryKey" id="ministryKey"  placeholder="Ministry Key*">
+			</div>
+			<div>
+				<button class="btn-submit">Submit</button>
+			</div>
+			<label>(*) marks the required fields</label>
+		</form>
+	</div>
+</div>
+
+<% include ./partials/footer %>

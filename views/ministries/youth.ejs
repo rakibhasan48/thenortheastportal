@@ -1,0 +1,83 @@
+<% include ../partials/header %>
+
+<div class="container ministry-container">
+	<div class="page-header ministry-header">
+		<h4><%=ministry%></h4>
+	</div>			
+
+	<div>
+		<div class="row img-container">
+			<img class="img-responsive" src="http://yas.nic.in/sites/all/themes/youthaffair/logo.png" alt="<%=ministry%>">	
+		</div>
+	</div>
+
+	<div class="project-desc">
+		<li ><strong>Website:</strong> <a href="yas.nic.in"> yas.nic.in</a></li>
+		<li><strong>Formed:</strong> 1982</li>
+		<li><strong>Jurisdiction:</strong> India</li>
+		<li><strong>Headquarters:</strong> Shastri Bhawan, Dr. Rajendra Prasad Road, New Delhi-110001</li>
+		<li><strong>Cabinet minister:</strong> Rajyavardhan Singh Rathore</li>
+		<li><strong>Minister of state:</strong> Rajyavardhan Singh Rathore</li>	
+	</div>
+	
+
+	<div class="para">
+		<p>
+			The Ministry of Youth Affairs and Sports, a branch of the Government of India, which administers Department of youth affairs and Department of Sports in India. The ministry also overlooks the organisation of Commonwealth 2010 games. As of July 2016, Minister of Youth Affairs and Sports is the Minister of State (Independent Charge) Vijay Goel. The ministry also gives the annual National Sports awards in various categories, including the Arjuna Award and Rajiv Gandhi Khel Ratna awards.The Ministry was set up as the Department of Sports at the time of organisation of 1982 Asian Games New Delhi. Its name was changed to the Department of Youth Affairs & Sports during celebration of the International Youth Year, 1985. It became a separate Ministry on 27 May 2000. Subsequently, In 2008, the Ministry has been bifurcated into Department of Youth Affairs and Department of Sports under two separate Secretaries.
+		</p>
+		<hr>
+	</div>
+
+	<div id="budget-table">
+		<h5>Budget Information : </h2>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Ministry Name</th>
+					<th>Total Budget Sanctioned</th>
+					<th>Year</th>
+					<th>Amount Spent for NER</th>
+					<th>Spent Amount More/Less than required</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%budgets.forEach(function(budget){%>
+					<%if(budget.ministry === ministry){%>
+						<tr class="active success">
+							<td><%=budget.ministry%></td>
+							<td><%=budget.total%></td>
+							<td><%=budget.year%></td>
+							<td><%=budget.amountSpent%></td>
+							<td><%=budget.amountDifference%></td>
+						</tr>
+					<%}%>
+				<%});%>	
+			</tbody>
+		</table>
+	</div>
+				
+
+
+	<h5>Projects:</h5>
+
+	<div class="row ministry_project">
+            <% projects.forEach(function(project){ %>
+            	<%if(project.ministryName === ministry){%>
+		            <div class="col-3-home">
+		                <div class="thumbnail">
+		                	 <img src="<%= project.image %>" alt="Project" />
+		                    <div class="caption">
+		                    	<h4><%= project.title %></h4>
+		                    </div>
+		                    <p>
+		                        <a href="/projects/<%= project._id %>" class="btn btn-primary">More Info</a>
+		                    </p>
+						</div>
+		            </div>
+	            <%}%>
+             <% }); %>
+	</div>
+</div>
+	
+
+<% include ../partials/footer %>

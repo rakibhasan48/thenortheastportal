@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="form-container">
+        <h4>Add Budget Information</h4>
+            
+            <form action="/budgets" method="POST" id="budget-form">
+                    
+
+                    <%if(currentUser.username === "modoner"){%>
+                        <label for="ministry">Ministry :</label>
+                        <input type="text" name="ministry" placeholder="Ministry" required>
+                    <%}%>
+
+                    <label for="total">Total Budget Sanctioned :</label>
+                    <input type="text" name="total" placeholder="Total Budget" required />
+                
+                    <label for="year">Fiscal Year :</label>
+                    <input type="number" min="1900" max="2099" step="1" value="2018" name="year"/>
+                    <!-- <select name="year">
+                        <option></option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                        <option>2012</option>
+                    </select> -->
+                
+                    <label for="amountSpent">Amount Spent This Year For North Eastern Region :</label>
+                    <input type="text" name="amountSpent" placeholder="Spent Amount" required />
+                
+                    <button class="btn-submit">Submit</button>
+                </div>
+             </form>
+<!--             <a href="/ministry/landing">Go Back</a> -->
+         </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

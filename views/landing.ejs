@@ -1,0 +1,126 @@
+<% include ./partials/header %>
+    <section id="carousel">
+        <div class="item active" id="0">
+            <h3>Welcome to <br> The North <span class="greenish">East Portal</span></h3>
+            <p>A product resulting from the Smart India Hackathon '17</p>
+            <p>By Team Stark</p>
+        </div>
+        <div class="item" id="1">
+            <!-- <img src="/assets/state-1.jpg"> -->
+            <h3>Arunachal Pradesh</h3>
+        </div>
+        <div class="item" id="2">
+            <h3>Assam</h3>
+        </div>
+        <div class="item" id="3">
+            <h3>Manipur</h3>
+        </div>
+        <div class="item" id="4">
+            <h3>Meghalaya</h3>
+        </div>
+        <div class="item" id="5">
+            <h3>Tripura</h3>
+        </div>
+        <div class="item" id="6">
+            <h3>Nagaland</h3>
+        </div>
+        <div class="item" id="7">
+            <h3>Mizoram</h3>
+        </div>
+        <div class="item" id="8">
+            <h3>Sikkim</h3>
+        </div>
+        <div class="arrows-left">
+            <i class="fa fa-chevron-left arrow" aria-hidden="true" onclick="plus(-1)"></i>
+        </div>
+        <div class="arrows-right">
+            <i class="fa fa-chevron-right arrow" aria-hidden="true" onclick="plus(1)"></i>
+        </div>
+        <div class="dots">
+            <span id="dot0" class="dot greenish" onclick="currentSlide(event, 0)"></span>
+            <span id="dot1" class="dot " onclick="currentSlide(event, 1)"></span>
+            <span id="dot2" class="dot " onclick="currentSlide(event, 2)"></span>
+            <span id="dot3" class="dot " onclick="currentSlide(event, 3)"></span>
+            <span id="dot4" class="dot " onclick="currentSlide(event, 4)"></span>
+            <span id="dot5" class="dot " onclick="currentSlide(event, 5)"></span>
+            <span id="dot6" class="dot " onclick="currentSlide(event, 6)"></span>
+            <span id="dot7" class="dot " onclick="currentSlide(event, 7)"></span>
+            <span id="dot8" class="dot " onclick="currentSlide(event, 8)"></span>
+        </div>
+    </section>
+    <section id="home_grid">
+        <div class="container">
+            <div class="row">
+                <div class="col-3-home">
+                    <h4><span class="fa fa-search search_logo" aria-hidden="true"></span> Check out the latest <span id="space"></span>Government Projects</h4>
+                    <p>Various projects are deployed continuously throughout the year and all over north east. Check out these projects posted by the government and post your opinions and rate them!.</p>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i><span> <a href="/projects">Read More</a></span>
+                </div>
+                <div class="col-3-home">
+                    <h4>Find out more about MoDONER</h4>
+                    <p>The Ministry of Development of North Eastern Region is responsible for the matters relating to the planning, execution and monitoring of development schemes and projects in the North Eastern Region. Its vision is to accelerate the pace of socio-economic development of the Region so that it may enjoy growth parity with the rest of the country.
+                    </p>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i><span> <a href="/ministry/page/modoner">Read More</a></span>
+                </div>
+                <div class="col-3-home">
+                    <h4>About Us</h4>
+                    <p>As a part of Smart India Hackathon'17 six young technocrats teamed up with the motive of creating a more transparent system in the North Eastern Region. The young students with the aim of contributing towards Digital India made a Web Portal and an android application for the Ministry of Development of North Eastern Region . The North East Portal bridges down the gap between public and the government and provides boost to the development of North Eastern Region.</p>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i><span> <a href="/about">Read More</a></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="spotlight">
+        <div class="container">
+            <h3>In The Spotlight</h3>
+            <div class="row">
+                <% projects.forEach(function(project){ %>
+                    <div class="col-3-home">
+                        <div class="thumbnail">
+                            <a href="/projects/<%= project._id %>"><img src="<%=project.image%>"></a>
+                            <p>
+                            <%=project.description.substring(0,200)%>...<a href="/projects/<%= project._id%>">Read More</a></p>
+                        </div>
+                        <div class="meter">
+                            <span style="width: <%=project.percentage%>%"></span>
+                        </div>
+                    </div>
+                    <% }); %>
+            </div>
+
+      </div>
+    </section>
+    
+    <section>
+
+
+      <%if(currentUser && currentUser.role === "GovUser"){%>
+        <div class="container">
+          <div class="row">
+            <div class="col-3-home">
+                <h4>Welcome, <%=currentUser.departmentName%></h4>
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i><span><a class="btn btn-primary" href="/landing/ministry"> Go to Ministry Page</a></span>
+            </div>
+          </div>
+        </div> 
+      <%}else{%>
+        <div class="container">
+          <div class="row">
+            <div class="col-3-home">
+                <h4>Give Us Your Suggestions!</h4>
+                <p>Your opinions and suggestions are valuable to the government. These feedbacks help the government in giving the people a much better system. So please feel free to post your suggestions. </p>
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i><span><a class="btn btn-primary" href="/suggestions"> Go To Suggestion Page</a></span>
+            </div>
+            <div class="col-3-home">
+                <h4>View Budget Information!</h4>
+                <p>To bring about transparency, various departments post their budget information so that the people might see government expenses. Find out more here! </p>
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i><span><a class="btn btn-primary" href="/budgets/show"> View Budget page</a></span>
+            </div>
+          </div>
+      </div>
+      <%}%> 
+    </section>  
+
+    </div>
+
+<% include ./partials/footer %>

@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+	<div class="container" id="budget_table">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Ministry Name</th>
+					<th>Total Budget Sanctioned</th>
+					<th>Year</th>
+					<th>Amount Spent for NER</th>
+					<th>Spent Amount More/Less than required</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="active success">
+					<td><%=budget.ministry%></td>
+					<td><%=budget.total%></td>
+					<td><%=budget.year%></td>
+					<td><%=budget.amountSpent%></td>
+					<td><%=budget.amountDifference%></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+<% include ../partials/footer %>		

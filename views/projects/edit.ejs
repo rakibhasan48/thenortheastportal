@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+
+<div class="container">
+
+    <div class="form-container">
+        <h4>Edit <%= project.name %></h4>
+        <form action="/projects/<%=project._id%>?_method=PUT" method="POST" id="edit_project" enctype = "multipart/form-data">
+                <label for="project[title]">Title :</label>
+                <input type="text" name="project[title]" value="<%=project.title%>">
+
+                <!-- <label for="project[image_url]">Image url :</label>
+                <input type="text" name="project[image_url]" value="<%= project.image_url %>" /> -->
+                
+                <label for="project[image_file]" >Upload image again : </label>
+                <input  type="file" name="image_file" accept="*/image">
+
+                <label for="project[head]">Head :</label>
+                <input type="text" name="project[head]" placeholder="Headed By" value="<%=project.head%>">
+
+                <label for="project[budget]">Sanctioned Budget :</label>
+                <input class="" type="text" name="project[budget]" placeholder="Budget" value="<%=project.budget%>" required >
+           
+                <label for="project[start_date]">Start Date:</label>
+                <input type="date" name="project[start_date]" required value="<%=project.startDate%>" >
+           
+                <label for="project[end_date]">Estimated Completion Date:</label>
+                <input type="date" name="project[end_date]" required value="<%=project.endDate%>" >
+                
+                <label for="project[description]">Description : </label>
+                <input type="text" name="project[description]" value="<%=project.description%>">
+
+
+                <button class="btn-submit">Submit!</button>
+
+         </form>
+<!--         <a href="/projects/<%=project._id%>">Go Back</a> -->
+     </div>
+
+</div>
+
+<% include ../partials/footer %>

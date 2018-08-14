@@ -1,0 +1,24 @@
+<% include ./partials/header %>
+
+<div class="container">
+	
+	<div class="form-container">
+		<h4>Add Ministry Key</h4>
+		<form action="/add/key" method="POST" id="add_key">
+			<div>
+				<input type="text" name="department" placeholder="Department Name">
+			</div>
+			<div>
+				<input  type="password" name="key" placeholder="Ministry Key" id="key">
+			</div>
+			<div>
+				<input  type="password" name="key_match" placeholder="Re-type Ministry Key">
+			</div>
+			<div>
+				<button class="btn-submit">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<% include ./partials/footer %>

@@ -1,0 +1,83 @@
+<% include ../partials/header %>
+
+<div class="container ministry-container">
+	<div class="page-header ministry-header">
+		<h4><%=ministry%></h4>
+	</div>			
+
+	<div>
+		<div class="row img-container">
+			<img class="img-responsive" src="http://www.entranceindia.com/wp-content/uploads/2016/08/Ministry-of-Women-and-Child-Development-Recruitment-2016-General-Manager.jpg" alt="<%=ministry%>">	
+		</div>
+	</div>
+
+	<div class="project-desc">
+		<li ><strong>Website:</strong> <a href="http://wcd.nic.in/"> http://wcd.nic.in/</a></li>
+		<li><strong>Formed:</strong> January 30, 2006</li>
+		<li><strong>Jurisdiction:</strong> India</li>
+		<li><strong>Headquarters:</strong> Shastri Bhawan, Dr. Rajendra Prasad Road, New Delhi</li>
+		<li><strong>Cabinet minister:</strong> Maneka Gandhi</li>
+		<li><strong>Minister of state:</strong> Maneka Gandhi</li>	
+	</div>
+	
+
+	<div class="para">
+		<p>
+			The Ministry of Women and Child Development, a branch of the Government of India, is the apex body for formulation and administration of the rules and regulations and laws relating to women and child development in India. The current minister for the Ministry of Women and Child Development is Maneka Gandhi having held the portfolio since May, 2014.The broad mandate of Ministry is to have holistic development of Women and Children. As a nodal Ministry for the advancement of women and children, the Ministry formulates plans, policies and programmes; enacts/ amends legislation, guides and coordinates the efforts of both governmental and non-governmental organisations working in the field of Women and Child Development. Besides, playing its nodal role, the Ministry implements certain innovative programmes for women and children. These programmes cover welfare and support services, training for employment and income generation, awareness generation and gender sensitization. These programmes play a supplementary and complementary role to the other general developmental programmes in the sectors of health, education, rural development etc. All these efforts are directed to ensure that women are empowered both economically and socially and thus become equal partners in national development along with men.The Ministry of Women and Child Development is headed by Smt. Maneka Sanjay Gandhi, Minister; Mr. Shankar Aggarwal is the Secretary and Mr. A.B.Joshi and Ms. Preeti Sudan are Additional Secretaries of the Ministry of Women and Child Development. The activities of the Ministry are undertaken through seven bureaux. The Ministry has 6 autonomous organisations working under its aegis. National Institute of Public Cooperation and Child Development (NIPCCD) National Commission for women (NCW) National Commission for Protection of Child Rights (NCPCR) Central Adoption Resource Agency (CARA) Central Social Welfare Board (CSWB) Rashtriya Mahila Kosh (RMK) NIPCCD and RMK are societies registered under the Societies Registration Act, 1860. CSWB is a charitable company registered under section 25 of the Indian Companies Act, 1956. These organisations are fully funded by the Govt. of India and they assist the Department in its functions including implementation of some programmes/schemes. The National Commission for Women was constituted as a national apex statutory body in 1992 for protecting and safeguarding the rights of women. The National Commission for Protection of Child Rights which is a national level apex statutory body constituted in the March 2007 for protecting and safe guarding the rights of children.
+		</p>
+		<hr>
+	</div>
+
+	<div id="budget-table">
+		<h5>Budget Information : </h2>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Ministry Name</th>
+					<th>Total Budget Sanctioned</th>
+					<th>Year</th>
+					<th>Amount Spent for NER</th>
+					<th>Spent Amount More/Less than required</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%budgets.forEach(function(budget){%>
+					<%if(budget.ministry === ministry){%>
+						<tr class="active success">
+							<td><%=budget.ministry%></td>
+							<td><%=budget.total%></td>
+							<td><%=budget.year%></td>
+							<td><%=budget.amountSpent%></td>
+							<td><%=budget.amountDifference%></td>
+						</tr>
+					<%}%>
+				<%});%>	
+			</tbody>
+		</table>
+	</div>
+				
+
+
+	<h5>Projects:</h5>
+
+	<div class="row ministry_project">
+            <% projects.forEach(function(project){ %>
+            	<%if(project.ministryName === ministry){%>
+		            <div class="col-3-home">
+		                <div class="thumbnail">
+		                	 <img src="<%= project.image %>" alt="Project" />
+		                    <div class="caption">
+		                    	<h4><%= project.title %></h4>
+		                    </div>
+		                    <p>
+		                        <a href="/projects/<%= project._id %>" class="btn btn-primary">More Info</a>
+		                    </p>
+						</div>
+		            </div>
+	            <%}%>
+             <% }); %>
+	</div>
+</div>
+	
+
+<% include ../partials/footer %>

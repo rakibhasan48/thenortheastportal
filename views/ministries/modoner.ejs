@@ -1,0 +1,83 @@
+<% include ../partials/header %>
+
+<div class="container ministry-container">
+	<div class="page-header ministry-header">
+		<h4>Ministry of Development Of North-Eastern Region</h4>
+	</div>			
+
+	<div>
+		<div class="row img-container">
+			<img class="img-responsive" src="https://innovate.mygov.in/wp-content/uploads/2016/12/northeast-_ver1.png" alt="<%=ministry%>">	
+		</div>
+	</div>
+
+	<div class="project-desc">
+		<li ><strong>Website:</strong> <a href="modoner.gov.in"> modoner.gov.in</a></li>
+		<li><strong>Formed:</strong> September 2001</li>
+		<li><strong>Jurisdiction:</strong> India</li>
+		<li><strong>Headquarters:</strong> Shastri Bhawan, Dr. Rajendra Prasad Road, New Delhi-110001</li>
+		<li><strong>Cabinet minister:</strong> Jitender Singh</li>
+		<li><strong>Minister of state:</strong> Jitender Singh</li>	
+	</div>
+	
+
+	<div class="para">
+		<p>
+			The Ministry of Development of North Eastern Region (MDoNER) is a Government of India ministry, established in September 2001, which functions as the nodal Department of the Central Government to deal with matters related to the socio-economic development of the eight States of Northeast India, Arunachal Pradesh, Assam, Manipur, Meghalaya, Mizoram, Nagaland, Tripura and Sikkim.[1] It acts as a facilitator between the Central Ministries/ Departments and the State Governments of the North Eastern Region in the economic development including removal of infrastructural bottlenecks, provision of basic minimum services, creating an environment for private investment and to remove impediments to lasting peace and security in the North Eastern Region The Department of Development of North Eastern Region (DoNER) was created in 2001 and was accorded the status of a full-fledged ministry on May 2004. The ministry is mainly concerned with the creation of infrastructure for economic development of North-Eastern region. Main activities/functions of the DoNER. Non Lapsible Central Pool of Resources (NLCPR) North Eastern Council (NEC) Coordination with the Central Ministries and the State Governments of the NE states. Capacity Building Advocacy and Publicity International Cooperation Enterprises of the Department.
+		</p>
+		<hr>
+	</div>
+
+	<div id="budget-table">
+		<h5>Budget Information : </h2>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Ministry Name</th>
+					<th>Total Budget Sanctioned</th>
+					<th>Year</th>
+					<th>Amount Spent for NER</th>
+					<th>Spent Amount More/Less than required</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%budgets.forEach(function(budget){%>
+					<%if(budget.ministry === ministry){%>
+						<tr>
+							<td><%=budget.ministry%></td>
+							<td><%=budget.total%></td>
+							<td><%=budget.year%></td>
+							<td><%=budget.amountSpent%></td>
+							<td><%=budget.amountDifference%></td>
+						</tr>
+					<%}%>
+				<%});%>	
+			</tbody>
+		</table>
+	</div>
+				
+
+
+	<h5>Projects:</h5>
+
+	<div class="row ministry_project">
+            <% projects.forEach(function(project){ %>
+            	<%if(project.ministryName === ministry){%>
+		            <div class="col-3-home">
+		                <div class="thumbnail">
+		                	 <img src="<%= project.image %>" alt="Project" />
+		                    <div class="caption">
+		                    	<h4><%= project.title %></h4>
+		                    </div>
+		                    <p>
+		                        <a href="/projects/<%= project._id %>" class="btn btn-primary">More Info</a>
+		                    </p>
+						</div>
+		            </div>
+	            <%}%>
+             <% }); %>
+	</div>
+</div>
+	
+
+<% include ../partials/footer %>

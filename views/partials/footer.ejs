@@ -1,0 +1,73 @@
+	 	</div>
+		 	<footer>
+
+				<div class="container">
+
+					<p class="title"><a href="/">TheNorth<span class="greenish">EastPortal<span></a></p>
+
+<!-- 					<p>
+						<li class="footlinks"><a href="/">Home</a></li>
+						<li class="footlinks"><a href="#">About</a></li>
+						<li class="footlinks"><a href="#">Faq</a></li>
+						<li class="footlinks"><a href="#">Contact</a></li>
+					</p> -->
+
+					<div class="row">
+						<div class="col-3-home">
+							<h5>Recent Posts</h5>
+							<ul>
+								<%if(projects.length >= 3){%>
+									<%var n=3%>
+								<%}else{%>
+									<%var n = projects.length%>
+								<%}%>
+								<%for(var i = 0; i<n; i++){%>
+									<li>
+										<a href="/projects/<%= projects[i]._id %>"><%=projects[i].title%></a>										
+									</li>
+								<% } %>
+							</ul>
+						</div>
+						<div class="col-3-home">
+							<h5>Contact Us</h5>
+							<ul>
+								<li><a href="#" class="fab fa-facebook" aria-hidden="true"></a> <a href="#" class="fab fa-twitter" aria-hidden="true"></a><a href="#" class="fab fa-google-plus" aria-hidden="true"></a></li>
+							</ul>
+						</div>
+						<div class="col-3-home"></div>
+					</div>
+
+
+				</div>
+
+				<!-- <div class="footer-right">
+					<p >North East Portal &copy; 2017</p>
+					<p>Contact Us</p>
+
+					<div class="footer-icons">
+						<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+					</div>
+				</div> -->
+
+			</footer>
+
+			<section id="copyright">
+				<div class="container">
+					<p class="inline cr">copyright &copy; Team Stark</p>
+<!-- 					<div class="inline">
+						<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+					</div> -->
+				</div>
+			</section>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+	<script src="/javascript/jquery-3.2.1.min.js"></script>
+	<script src="/javascript/jquery.validate.js"></script>
+
+
+    <script type="text/javascript" src="/javascript/modoner.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>

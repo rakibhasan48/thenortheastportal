@@ -1,0 +1,78 @@
+<% include ./partials/header %>
+
+<div class="container" id="ministry-landing">
+	<header>
+		<h1><span class="black">Welcome</span> <span class="greenish"><%=currentUser.departmentName%></span></h1>
+	</header>
+
+
+<%if(currentUser.username === "modoner"){%>
+	<div>
+		<div class="ministry-landing-options">
+			<h5>
+				<i class="fa fa-angle-double-right greenish" aria-hidden="true"></i> 
+				<a href="/projects/new">Add New Project</a>
+			</h5>
+		</div>
+
+		<div class="ministry-landing-options">
+			<h5>
+				<i class="fa fa-angle-double-right greenish" aria-hidden="true"></i> 
+				<a href="/budgets/new">Enter Budget Information</a>
+			</h5>
+		</div>
+			
+		<div class="ministry-landing-options">
+			<h5>
+				<i class="fa fa-angle-double-right greenish" aria-hidden="true"></i> 
+				<a href="/budgets/show">View Budget Information</a>
+			</h5>
+		</div>
+
+		<div class="ministry-landing-options">
+			<h5>
+				<i class="fa fa-angle-double-right greenish" aria-hidden="true"></i> 
+				<a href="/projects/page/ministry/<%=currentUser.departmentName%>">View Projects</a>
+			</h5>
+		</div>	
+
+		<div class="ministry-landing-options">
+			<h5>
+				<i class="fa fa-angle-double-right greenish" aria-hidden="true"></i> 
+				<a href="/add/key">Add A Ministry Key</a>
+			</h5>
+		</div>	
+	
+	</div>	
+<%}else{%>
+		<div>
+
+			<div class="ministry-landing-options">
+				<h5>
+					<i class="fa fa-angle-double-right greenish" aria-hidden="true"></i> 
+					<a href="/projects/new">Add New Project</a>
+				</h5>
+			</div>
+
+			<div class="ministry-landing-options">
+				<h5>
+					<i class="fa fa-angle-double-right greenish" aria-hidden="true"></i> 
+					<a href="/budgets/new">Enter Budget Information</a>
+				</h5>
+			</div>
+
+			<div class="ministry-landing-options">
+				<h5>
+					<i class="fa fa-angle-double-right greenish" aria-hidden="true"></i> 
+					<a href="/projects/page/ministry/<%=currentUser.departmentName%>">View Projects</a>
+				</h5>
+			</div>	
+		
+		</div>
+	<%}%>
+
+</div>
+
+
+
+<% include ./partials/footer %>

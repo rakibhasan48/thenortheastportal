@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+
+	<div class="container" id="select-budget-form">
+
+		<div class="form-container">
+            <h4 >Search Budget Information:</h4>
+            <form action="/budgets/detailed" method="POST" id="show_budget_form">
+                <div>
+                    <label for="year">Year :</label>
+                    <input type="number" min="1900" max="2099" step="1" value="2018" name="year"/>
+                    <!-- <select name="year">
+                        <option></option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                        <option>2012</option>
+                        <option>All</option>
+                    </select> -->
+        		</div>
+        		<div>
+                    <label for="ministry">Ministry :</label>
+                    <select name="ministry">
+                    <option></option>
+                        <%ministries.forEach(function(ministry){%>
+                            <option><%=ministry%></option>
+                        <%})%>
+                        
+                    </select>
+                </div>
+                <div>
+                    <button class="btn-submit">Submit</button>
+                </div>
+        	</form>	
+        </div>		
+	</div>
+
+<% include ../partials/footer %>

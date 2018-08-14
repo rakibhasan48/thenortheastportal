@@ -1,0 +1,83 @@
+<% include ../partials/header %>
+
+<div class="container ministry-container">
+	<div class="page-header ministry-header">
+		<h4><%=ministry%></h4>
+	</div>			
+
+	<div>
+		<div class="row img-container">
+			<img class="img-responsive" src="http://indiamicrofinance.com/wp-content/uploads/2014/03/ministry-urban-development-logo.gif" alt="<%=ministry%>">	
+		</div>
+	</div>
+
+	<div class="project-desc">
+		<li ><strong>Website:</strong> <a href="moud.gov.in"> moud.gov.in</a></li>
+		<li><strong>Formed:</strong> 1952</li>
+		<li><strong>Jurisdiction:</strong> India</li>
+		<li><strong>Headquarters:</strong> Maulana Azad Road, Nirman Bhawan, New Delhi - 110 011</li>
+		<li><strong>Cabinet minister:</strong> Venkaiah Naidu</li>
+		<li><strong>Minister of state:</strong> Rao Inderjit Singh</li>	
+	</div>
+	
+
+	<div class="para">
+		<p>
+			Ministry of Urban Development (MoUD), Government of India, is the apex body for formulation and administration of the rules and regulations and laws relating to the housing and urban development in India. The ministry is under the charge of Venkaiah Naidu. The Ministry was attached on and off with the Ministry of Housing and Urban Poverty Alleviation on many occasions, before finally becoming independent in 2004. The ministry also published the National City Rating, which ranked the Cleanest cities in India under which Chandigarh was rated as the cleanest city of India.In India out of the total population of 1210.2 million as on 1st March, 2011, about 377.1 million are in urban areas. The net addition of population in urban areas over the last decade is 91.0 million. The percentage of urban population to the total population of the country stands at 31.6. There has been an increase 3.35 percentage points in the proportion of urban population in the country during 2001-2011. The provisional results of Census 2011 reveals that there is an increase of 2774 towns comprising 242 Statutory and 2532 Census towns over the decade. Growth rate of population in urban areas was 31.8%. Further the number of million plus cities/urban agglomeration UA has increased from 35 in Census 2001 to 53 in Census 2011. The new entrants are Srinagar UA Jam-mu and Kashmir,Union Territory of Chandigarh UA, Jodhpurs UA and Kota Rajas than, Ghaziabad UA Uttar Pradesh, Ranchi UA Jharkhand, Raipur UA and Durg-Bhilainagar UA Chattisgarh, Gwalior UA Madhya Pradesh, Vasai Virar and Aurangabad UA Maharashtra, Kozhikode UA, Thrissur UA, Malappuram UA, Thiruvananthapuram UA, Kannur UA and Kollam UA Kerala, and Tiruchirapalli US Tamil Nadu. So while the States of Jammu and Kashmir and Chattisgarh now also have million plus city/UA, Kerala now has as many as 7 million plus cities/UA, a quantum jump from the situation in 2001 when just Kochi UA was a million plus city/UA.
+		</p>
+		<hr>
+	</div>
+
+	<div id="budget-table">
+		<h5>Budget Information : </h2>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Ministry Name</th>
+					<th>Total Budget Sanctioned</th>
+					<th>Year</th>
+					<th>Amount Spent for NER</th>
+					<th>Spent Amount More/Less than required</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%budgets.forEach(function(budget){%>
+					<%if(budget.ministry === ministry){%>
+						<tr class="active success">
+							<td><%=budget.ministry%></td>
+							<td><%=budget.total%></td>
+							<td><%=budget.year%></td>
+							<td><%=budget.amountSpent%></td>
+							<td><%=budget.amountDifference%></td>
+						</tr>
+					<%}%>
+				<%});%>	
+			</tbody>
+		</table>
+	</div>
+				
+
+
+	<h5>Projects:</h5>
+
+	<div class="row ministry_project">
+            <% projects.forEach(function(project){ %>
+            	<%if(project.ministryName === ministry){%>
+		            <div class="col-3-home">
+		                <div class="thumbnail">
+		                	 <img src="<%= project.image %>" alt="Project" />
+		                    <div class="caption">
+		                    	<h4><%= project.title %></h4>
+		                    </div>
+		                    <p>
+		                        <a href="/projects/<%= project._id %>" class="btn btn-primary">More Info</a>
+		                    </p>
+						</div>
+		            </div>
+	            <%}%>
+             <% }); %>
+	</div>
+</div>
+	
+
+<% include ../partials/footer %>

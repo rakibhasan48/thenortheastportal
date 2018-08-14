@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The North East Portal</title>
+
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+      <!-- Optimization for mobile devices -->
+      <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+      <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes,maximum-scale=1.0" />
+
+      <link rel="icon" href="/assets/neportal_logo.ico">
+
+      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+      <link rel="stylesheet" href="/stylesheets/font-awesome/css/all.css">
+
+      <!-- Google Fonts -->
+      <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Sansita:400,700" rel="stylesheet"> -->
+      <link rel="stylesheet" href="/stylesheets/animate.css">
+      <link rel="stylesheet" href="/stylesheets/app.css">
+  </head>
+  <body>
+
+        <div>
+          <div class="header">
+
+          <div class="container nav-container">
+            <p class="title"><a href="/">TheNorth<span class="greenish">EastPortal<span></a></p>
+            <!-- <a class="logo align-left" href="/"><img id="logo" src="/assets/ner_logo.jpg"></a> -->
+            <div>
+
+            
+            <nav>
+                      
+                  <li ><a href="/">Home</a></li>
+                  <li class="dropdown_main">
+                      <a href="#">States <span class="fa fa-caret-down"></span></a>
+                      <ul class="dropdown_content">
+                        <li><a href="/states/page/arunachal">Arunachal Pradesh</a></li><br>
+                        <li><a href="/states/page/assam">Assam</a></li><br>
+                        <li><a href="/states/page/manipur">Manipur</a></li><br>
+                        <li><a href="/states/page/mizoram">Mizoram</a></li><br>
+                        <li><a href="/states/page/meghalaya">Meghalaya</a></li><br>
+                        <li><a href="/states/page/tripura">Tripura</a></li><br>
+                        <li><a href="/states/page/nagaland">Nagaland</a></li><br>
+                        <li><a href="/states/page/sikkim">Sikkim</a></li><br>
+                      </ul>
+                   </li>
+                  <li class="dropdown_main">
+                      <a >Ministries
+                      <span class="fa fa-caret-down"></span></a></a>
+                      <ul class="dropdown_content">
+                        <li><a href="/ministry/page/modoner">Ministry of Development of North Eastern Region</a></li><br>
+                        <li><a href="/ministry/page/railway">Ministry of Railways</a></li><br>
+                        <li><a href="/ministry/page/youth">Ministry of Youth And Sports</a></li><br>
+                        <li><a href="/ministry/page/hrd">Ministry of Human Resource Development</a></li><br>
+                        <li><a href="/ministry/page/road">Ministry of Road Transport and Highways</a></li><br>
+                        <li><a href="/ministry/page/women">Ministry of Women and Child Development</a></li><br>
+                        <li><a href="/ministry/page/urban">Ministry of Urban Development</a></li><br>
+                      </ul>
+                   </li>
+                   <li class="dropdown_main">
+                      <a href="/projects">Projects
+                        <span class="fa fa-caret-down"></span></a>
+                        <ul class="dropdown_content">
+                          <li><a href="/projects">Current Projects</a></li><br>
+                        </ul>  
+                   </li>
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/contact">Contact</a></li>
+                 
+                
+                  <% if(!currentUser){ %>
+                    <li class="dropdown_main">
+                      <a href="#">Login
+                      <span class="fa fa-caret-down"></span></a>
+                      <ul class="dropdown_content">
+                        <li><a href="/login/user">Login as Public User</a></li><br>
+                        <li><a href="/login/gov">Login as Government Representative</a></li><br>
+                      </ul> 
+                   </li>  
+                    <li class="dropdown_main">
+                      <a href="#">SignUp
+                      <span class="fa fa-caret-down"></span></a>
+                      <ul class="dropdown_content">
+                        <li><a href="/register/user">Register as Public User</a></li><br>
+                        <li><a href="/register/gov">Register as Government Representative</a></li><br>
+                      </ul> 
+                   </li>
+                  <% } else { %>
+                      <%if(currentUser.role === "GovUser"){%>
+                        <li><a href="/landing/ministry">Ministry Page</a></li>    
+                      <%}%>
+                      <li class="dropdown_main">
+                        <a>Signed in as, <span class="greenish"><%= currentUser.username %></span>
+                        <span class="fa fa-caret-down"></span></a>
+                          <%if(currentUser.role === "User" && !currentUser.isVerified){%>   
+                            <ul class="dropdown_content">                                 
+                                <li><a href="/verify/resend/">Resend Verification Email</a></li>
+                            </ul>
+                          <%}%>
+                          
+                      </li> 
+                      <li><a href="/logout">Log Out</a></li>
+                  <% } %>
+                  
+                  <li id="ham-btn" onclick="toggleHam()"><i class="fa fa-bars greenish ham" ></i></li> 
+               </div> 
+            </nav>
+            </div>
+
+            <div class="container-flash">
+              <% if(error && error.length > 0){ %>
+                <div class="flash-msg error-msg">
+                  <%= error %>
+                  <i class="fa fa-times flash-msg-close"></i>
+                </div> 
+              <% } %>
+
+              <% if(success && success.length > 0){ %>
+                <div class="flash-msg success-msg">
+                  <%= success %>
+                  <i class="fa fa-times flash-msg-close"></i>
+                </div> 
+              <% } %> 
+            </div>
+
+            <div class="container-loading">
+              <div class="flash-msg loading-msg">
+                <img src="/assets/loading.svg" alt=""> <span class="greenish">Loading...</span>
+              </div> 
+            </div>
+
+            <!-- <div id="google_translate_element"></div>
+
+            <div id="translate">  
+              <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+              }
+              </script>
+
+              <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>  
+            </div> --> 
+          </div>
+        </div>
+
+        <div id="content">
+
+   

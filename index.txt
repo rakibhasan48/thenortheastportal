@@ -1,0 +1,25 @@
+Team Name- Stark
+
+Title of the idea- The North East Portal
+
+i4c id- 6692
+
+Name of Members- 1. Divesh Kumar Soni
+		 2. Utkarsh Jain
+		 3. Luv Gulati
+		 4. Mayank Maheshwari
+		 5. MD. Rakib Hasan 
+		 6. Pooja Kumari
+
+Tech Stack they used- Languages- 1. HTML 5
+				 2. CSS
+				 3. Javascript
+				 4. Node.Js
+				 5. Python
+		      Software-  1. Sublime Text 3
+				 2. MongoDB
+				 3. Anaconda 3
+				 4. Flask API
+				 5. FLASK REST API
+
+College Name- M. M. Engineering College

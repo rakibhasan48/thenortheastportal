@@ -1,0 +1,252 @@
+<% include ../partials/header %>
+
+<div id="project-container">
+	<div class="row">
+		<!-- <div class="col-md-3 col-xs-10" id="map-bar">
+			<script >
+				function initMap(){
+				var subhaDam = {lat: 27.5528864, lng: 94.2593899};
+				  var map = new google.maps.Map(document.getElementById('map'),{
+				  zoom: 16,
+				  center: subhaDam
+				  });
+				  
+				  var marker = new google.maps.Marker({
+				  position: subhaDam,
+				  map: map
+				  });
+				}
+			</script>
+			<h3>Location : </h3>
+			<div id="map"></div>
+			<p></p>		
+		</div> -->
+		<div class="container" id="project-content">
+			
+			<div class="page-header">
+				<h4 ><%= project.title %></h4>
+				<h5>Posted by The <%= project.ministryName %></h5>	
+			</div>
+
+			<div class="container">
+				<div class="row img-container">
+					
+					<img class="img-responsive" src="<%= project.image %>"/>
+								
+				</div>
+
+
+				<p><strong>Progress : </strong></p>
+
+				<div class="meter">
+					<span style="width: <%=project.percentage%>%">
+				</div>
+				
+				<div class="project-desc">
+					<p><strong>Details :</strong></p>
+						<li><strong>Project Name : </strong><%= project.title %></li>
+						<li><strong>Headed By : </strong><%=project.head%></li>
+						<li><strong>Sanctioned Budget : </strong> <%=project.budget%></li>
+						<li><strong>Started From : </strong><%=project.startDate%></li>
+						<li><strong>Estimated Completion Date :</strong> <%=project.endDate%></li>
+					<ul>
+					</ul>	
+				</div>
+				<% if(currentUser && project.author.id.equals(currentUser._id)) {%>
+					<div id="gov_control">
+						<button class="btn-submit inline"><a href="/projects/<%=project.id%>/edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit This Post</a></button>
+
+						<form class="inline" id="deleteForm" action="/projects/<%=project._id%>?_method=DELETE" method="POST">
+							<button class="btn-delete"><i class="fa fa-trash" aria-hidden="true"></i>  Delete</button>
+						</form>
+						<button class="btn-submit inline"><a href="/report/<%=project._id%>" id="generateReport">Generate Report</a></button>
+					</div>
+				<% } %>
+
+				<% if(currentUser && currentUser.role === "GovUser" && currentUser.departmentName == "Ministry of  Development"){%>
+					<div id="gov_control">
+						<button class="btn-submit inline"><a href="/report/<%=project._id%>" id="generateReport">Generate Report</a></button>
+					</div>	
+				<% } %>
+
+					<br><br>
+				<div class="para"><p><%=project.description%></p></div>
+				<hr>	
+
+				<%var a = true;%>
+				<%if(currentUser){%>
+					<%project.ratings.forEach(function(rating){%>
+						<%if(rating.author.id.equals(currentUser._id)){%>
+							<%a = false;%>		
+						<%}else{%>
+							<%a = true;%>
+						<%}%>
+					<%})%>
+				<%}%>
+				<%if(a){%>
+					<div class="stars">
+					  <form action="/projects/<%=project._id%>/comments/rating" method="POST">
+					  	
+					    	<input class=" star-1" id="star-1" type="radio" checked="checked" name="star[selected]" value="1"/>
+					    	<!-- <span class="star-icon"></span> -->
+					    <label class="star star-1" for="star-1"></label>
+
+					    
+					    	<input class=" star-2" id="star-2" type="radio" name="star[selected]" value="2"/>
+					    	<!-- <span class="star-icon"></span> -->
+					    <label class="star star-2" for="star-2"></label>
+
+					    
+					    	<input class=" star-3" id="star-3" type="radio" name="star[selected]" value="3"/>
+					    	<!-- <span class="star-icon"></span> -->
+					    <label class="star star-3" for="star-3"></label>
+
+					    
+					    	<input class=" star-4" id="star-4" type="radio" name="star[selected]" value="4"/>
+					    	<!-- <span class="star-icon"></span> -->
+					    <label class="star star-4" for="star-4"></label>
+
+					  	
+
+					    	<input class=" star-5" id="star-5" type="radio" name="star[selected]" value="5"/>
+					    	<label class="star star-5" for="star-5"></label>
+					    	<!-- <span class="star-icon"></span> -->
+					    					    
+					   <button class="btn-submit">Rate This Project!</button>
+					  
+					  </form>
+					</div>	
+				<%}%>		
+	
+				<div class="comment-box">
+					<i class="fa fa-comment" aria-hidden="true"></i>  
+					<h5 style="display: inline-block;">Write Comment</h5>
+					
+					<form id="comment-form" action="/projects/<%=project._id%>/comments" method="POST">
+						<textarea placeholder="Write Comment here" name="comment[text]" id="comment_text"></textarea>
+
+						<div class="comment-button">
+							<button class="btn-submit">
+								Submit
+							</button>	
+						</div>
+					</form>
+					
+					<script src="/javascript/jquery-3.2.1.min.js"></script>
+					<script>
+						var frm = $('#comment-form');
+
+						frm.submit(function(e){
+						  e.preventDefault();
+
+						  if($('#comment_text').val().length <= 2){
+						  	// console.log("Nothing written");
+						  }else{
+							  $.ajax({
+							      type: frm.attr('method'),
+							      url: frm.attr('action'),
+							      data: frm.serialize(),
+							      success: function (data) {
+							        // console.log('Submission was successful.');
+							        
+							        if(data == 'Illegal'){
+							        	$('.container-flash').prepend(`<div class="flash-msg error-msg">
+						                  You need to be logged in to do that!
+						                  <i class="fa fa-times flash-msg-close"></i>
+						                </div>`)
+							        }else if(data == "IllegalVerify"){
+							        	$('.container-flash').prepend(`<div class="flash-msg error-msg">
+						                  Please verify account via email first!
+						                  <i class="fa fa-times flash-msg-close"></i>
+						                </div>`)	
+							        }else if(data == "Abuse"){
+							        	$('.container-flash').prepend(`<div class="flash-msg error-msg">
+						                  Vulgar comments not allowed!
+						                  <i class="fa fa-times flash-msg-close"></i>
+						                </div>`)	
+							        }else{
+								        $("#comment-show").prepend(`<div class="col-md-12" style="border-bottom: 1px solid #18cfab;margin-bottom:1rem;">
+										<strong>${data.author.username}</strong>
+
+
+										<span class="pull-right">${new Date(data.updated).toDateString()}</span>
+										<p>${data.text}</p>
+										
+										</div>`)
+
+										$('.container-flash').prepend(`<div class="flash-msg success-msg">
+						                  Comment Posted Successfully!
+						                  <i class="fa fa-times flash-msg-close"></i>
+						                </div>`) 
+
+						                $('#comment_text').val("");
+							    	}
+							      },
+							      error: function (data) {
+							          // console.log('An error occurred.');
+							          // console.log(data);
+							      },
+							  });
+							}  
+
+						})
+					</script>
+
+				</div>	
+
+				<div class="comment-display">
+					<h5>Comments</h5><hr>
+					<%if(project.comments.length<1){%>
+						<div class="row" id="comment-show">
+						</div>	
+					<%}%>
+					<% project.comments.reverse().forEach(function(comment){ %>
+						<div class="row" id="comment-show">
+							<div class="col-md-12">
+								<strong><%= comment.author.username %></strong>
+								<span class="pull-right"><%=comment.updated.toDateString()%></span>
+								<%project.ratings.forEach(function(rating){%>
+									<%if(rating.author.username === comment.author.username){%>
+										<%for(var i=1; i<=parseInt(rating.selected); i++){%>
+											<i class="fa fa-star" aria-hidden="true"></i>
+										<%}%>	
+									<%}%>
+								<%})%>	
+								<p><%= comment.text %></p>
+								
+								<p class="reply_text left-highlight" style="padding-left:20px;"><%= comment.reply %></p>
+
+								<% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+										<!-- <button style="display: inline;" class="btn-submit"><a href="/projects/<%=project._id%>/comments/<%=comment._id%>/edit">Edit</a></button>
+
+										<form class="comment_delete_form" action="/projects/<%=project._id%>/comments/<%=comment.id%>?_method=DELETE" method="POST">
+											<button class="btn-delete">Delete</button>
+										</form> -->
+								<% } %>
+
+								<% if(currentUser && project.author.id.equals(currentUser._id)) {%>
+									<div class="reply_container">
+										<a class="reply_btn" class="btn btn-primary" ><i class="fa fa-pencil" aria-hidden="true"> <h5 style="display: inline; cursor: pointer;">Reply</h5> </i></a>
+										<div class="reply_box hidden">
+											<form action="/projects/<%=project._id%>/comments/reply/<%=comment._id%>?_method=PUT" method="POST" class="reply_form">
+												<textarea placeholder="Write Reply" name="comment[reply]" class="reply_area"></textarea>
+												<button class="reply-btn btn-submit">Submit</button>
+											</form>
+										</div>
+									</div>
+								<% } %>	
+									<!-- <hr class="comment-hr"> -->
+								</div>
+							</div>
+					<% }) %>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJq5B4MEZcaSwL3DkGL3Bzjeu1wlecpLs&callback=initMap"></script> -->
+<% include ../partials/footer %>
+

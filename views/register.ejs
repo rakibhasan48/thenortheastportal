@@ -1,0 +1,60 @@
+<% include ./partials/header %>
+
+<!-- <script >
+
+    function check_pass(){
+            if (document.getElementById('password').value==document.getElementById('confirm_password').value){
+                 document.getElementById('reg_submit').disabled = false;
+                 document.getElementById('pass_message').className = "alert alert-success";
+                 document.getElementById('pass_message').innerHTML = "Password Matched!!";
+                }
+                else {
+                 document.getElementById('reg_submit').disabled = true;
+                 document.getElementById('pass_message').className = "alert alert-danger";
+                 document.getElementById('pass_message').innerHTML = "Password Did Not Match!!";
+                }
+        }  
+
+</script> -->
+
+
+
+<div class="container" id="sign_up">
+
+        <div class="form-container">
+            <h4 >Register Account</h4>
+            <form action="/register/user" method="POST" id="public_register">
+                <div>
+                    <input  type="text" name="fName" id="fName" placeholder="First Name*" >
+                </div>
+                <div>
+                    <input  type="text" name="lName" id="lName" placeholder="Last Name*" >
+                </div>
+                <div>
+                    <input  type="text" name="username" id="username" placeholder="Choose username*" >
+                </div>
+                <div>
+                    <input  type="email" name="email" id="email" placeholder="Email Address*" >
+                </div>
+                <div>
+                    <input id="password"  type="Password" name="password" id="password" placeholder="Password*" pattern=".{5,100}"  title="Password must be between 5-10 characters">
+                </div>
+                <div>
+                    <input id="confirm_password"  type="password" name="password_validation" id="password_validation" placeholder="Confirm Password*" pattern=".{5,100}" > <span id="pass_message"></span>
+                </div>
+                <!-- <div>
+                    <input  type="password" name="aadhar" id="aadhar" placeholder="Aadhar Card ID*" >
+                </div> -->
+                <div>
+                    <button class="btn-submit" id="reg_submit">Register</button>
+                </div>
+             </form>
+             <label>(*) marks the required fields</label>
+            <a href="/" class="btn-back"><h5>Go Back</h5></a>
+         </div>
+</div>
+
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJq5B4MEZcaSwL3DkGL3Bzjeu1wlecpLs&callback=initMap"> -->
+
+
+<% include ./partials/footer %>

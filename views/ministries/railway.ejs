@@ -1,0 +1,83 @@
+<% include ../partials/header %>
+
+<div class="container ministry-container">
+	<div class="page-header ministry-header">
+		<h4><%=ministry%></h4>
+	</div>			
+
+	<div>
+		<div class="row img-container">
+			<img class="img-responsive" src="http://www.indianmirror.com/indian-industries/images/railway-top-img.jpg" alt="<%=ministry%>">	
+		</div>
+	</div>
+
+	<div class="project-desc">
+		<li ><strong>Website:</strong> <a href="indianrailways.gov.in"> indianrailways.gov.in</a></li>
+		<li><strong>Formed:</strong> April 16, 1853</li>
+		<li><strong>Jurisdiction:</strong> India</li>
+		<li><strong>Headquarters:</strong> Rail Bhavan, 1, Raisina Road, New Delhi</li>
+		<li><strong>Cabinet minister:</strong> Suresh Prabhu</li>
+		<li><strong>Minister of state:</strong> Manoj Sinha, Rajen Gohain</li>	
+	</div>
+	
+
+	<div class="para">
+		<p>
+			The Ministry of Railways is a ministry in the Government of India, responsible for the countrys rail transport. The ministry operates the state-owned Indian Railways, an organisation that operates as a monopoly in rail transport and is headed by the Chairman of Railway Board. The ministry is headed by the Minister of Railways, a cabinet-level minister who presents the rail budget every year in parliament.The East India Railway Committee, chaired by Sir William Acworth, hence also known as the Acworth Committee, pointed out the need for unified management of the entire railway system. On the recommendations of this committee and ratification of the resolution for separation in 1924, the government took over the actual management of all the railways, and also separated the railway finances from the general governmental finances, leading to the practice of presenting the Railway Budget separately from the general budget of India every year. The Railway Board was expanded to have a Financial Commissioner, a member in charge of ways, works, stores and projects, and a member in charge of administration, staff, and traffic. Accordingly, from 1 April 1929, the responsibility for the compilation of accounts for the Railways was taken over by the Financial Commissioner, Railways from the Auditor General.
+		</p>
+		<hr>
+	</div>
+
+	<div id="budget-table">
+		<h5>Budget Information : </h2>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Ministry Name</th>
+					<th>Total Budget Sanctioned</th>
+					<th>Year</th>
+					<th>Amount Spent for NER</th>
+					<th>Spent Amount More/Less than required</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%budgets.forEach(function(budget){%>
+					<%if(budget.ministry === ministry){%>
+						<tr class="active success">
+							<td><%=budget.ministry%></td>
+							<td><%=budget.total%></td>
+							<td><%=budget.year%></td>
+							<td><%=budget.amountSpent%></td>
+							<td><%=budget.amountDifference%></td>
+						</tr>
+					<%}%>
+				<%});%>	
+			</tbody>
+		</table>
+	</div>
+				
+
+
+	<h5>Projects:</h5>
+
+	<div class="row ministry_project">
+            <% projects.forEach(function(project){ %>
+            	<%if(project.ministryName === ministry){%>
+		            <div class="col-3-home">
+		                <div class="thumbnail">
+		                	 <img src="<%= project.image %>" alt="Project" />
+		                    <div class="caption">
+		                    	<h4><%= project.title %></h4>
+		                    </div>
+		                    <p>
+		                        <a href="/projects/<%= project._id %>" class="btn btn-primary">More Info</a>
+		                    </p>
+						</div>
+		            </div>
+	            <%}%>
+             <% }); %>
+	</div>
+</div>
+	
+
+<% include ../partials/footer %>

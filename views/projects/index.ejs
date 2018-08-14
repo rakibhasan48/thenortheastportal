@@ -1,0 +1,79 @@
+<% include ../partials/header %>
+    <section id="project-index">
+        <div class="container">
+            <header>
+                <div class="container">
+                    <h4 class="left-highlight">Welcome to Project Page</h4>
+                    <%if(currentUser){%>
+                        <%if(currentUser.role === "GovUser"){%>
+                            <p>
+                                <a class="underline" href="/projects/new"><h5>Add a new Project</h5></a>
+                            </p>
+                            <%}%>
+                                <%}%>
+                </div>
+            </header>
+
+            <div class="sort_min">
+                <form action="/projects/page/sort/ministry/" method="GET" id="sort_ministry">
+                    <select name="ministry">
+                        <option></option>
+                        <%projectPostedBy.forEach(function(name){%>
+                            <option><%=name%></option>
+                        <%})%>
+                    </select>
+                    <button class="btn-submit">Filter</button>
+                </form>
+            </div>
+            
+            <div class="row">
+
+                <%if(locals.num){%>
+                
+                    <% var start = 0; if(num > 1) start = (12 * (num-1)) %>
+                    <% var count = 12*num; if(count > projects.length) count = projects.length %>
+
+                    <% for(var i=start; i< count; i++){ %>
+                        <div class="col-3-home">
+                            <div class="thumbnail">
+                                <img src="<%= projects[i].image %>" alt="Project" />
+                                <h4><%= projects[i].title %></h4>
+                                <p>
+                                    <a href="/projects/<%= projects[i]._id %>" class="fa fa-angle-double-right" aria-hidden="true"> More Info</a>
+                                </p>
+                            </div>
+                        </div>
+                    <% } %>
+
+
+                    <% if(projects.length > 12) { %>
+                        
+                        <%var page_count = Math.ceil(projects.length / 12)%>
+
+                        <div class="row" style="text-align: center;">
+                            <% for(var i = 1; i <= page_count; i++){ %>
+                                
+                                <a href="/projects/page/<%= i %>"><button class="btn-page"><%= i %></button></a>  
+                            <% } %>
+                        </div>
+
+                    <% } %>
+                <%}else{%>
+                    <%projects.forEach(function(project){%>
+                        <div class="col-3-home">
+                            <div class="thumbnail">
+                                <img src="<%= project.image %>" alt="Project" />
+                                <h4><%= project.title %></h4>
+                                <p>
+                                    <a href="/projects/<%= project._id %>" class="fa fa-angle-double-right" aria-hidden="true"> More Info</a>
+                                </p>
+                            </div>
+                        </div> 
+                    <%})%>   
+                <%}%>
+
+
+            </div>
+        </div>
+    </section>
+<% include ../partials/footer %>

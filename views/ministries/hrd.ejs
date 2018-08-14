@@ -1,0 +1,83 @@
+<% include ../partials/header %>
+
+<div class="container ministry-container">
+	<div class="page-header ministry-header">
+		<h4><%=ministry%></h4>
+	</div>			
+
+	<div>
+		<div class="row img-container">
+			<img class="img-responsive" src="https://i.ytimg.com/vi/Tv8t8-UMrR4/hqdefault.jpg" alt="<%=ministry%>">	
+		</div>
+	</div>
+
+	<div class="project-desc">
+		<li ><strong>Website:</strong> <a href="mhrd.gov.in"> mhrd.gov.in</a></li>
+		<li><strong>Formed:</strong> September 26, 1985</li>
+		<li><strong>Jurisdiction:</strong> India</li>
+		<li><strong>Headquarters:</strong> Shastri Bhawan, Dr. Rajendra Prasad Road, New Delhi-110001</li>
+		<li><strong>Cabinet minister:</strong> Prakash Javadekar</li>
+		<li><strong>Minister of state:</strong> Upendra Kushwaha, Mahendra Nath Pandey</li>	
+	</div>
+	
+
+	<div class="para">
+		<p>
+			The Ministry of Human Resource Development, formerly Ministry of Education (until 25 September 1985), is responsible for the development of human resources in India. The Ministry is divided into two departments: the Department of School Education and Literacy, which deals with primary, secondary and higher secondary education, adult education and literacy, and the Department of Higher Education, which deals with university education, technical education, scholarship etc. The erstwhile Ministry of Education now functions under these two departments, as of 26 September 1985.The Department of School Education and Literacy is responsible for development of school education and literacy in the country. It works on “universalisation of education” and for the cultivation of higher standards for citizenship among the youth of India.The Department of Higher Education is in charge of secondary and post-secondary education. The department is empowered to grant deemed university status to educational institutions on the advice of the University Grants Commission (UGC) of India, under Section 3 of the University Grants Commission (UGC) Act, 1956.The Department of Higher Education takes care of one of the largest higher education systems of the world, just after the United States and China. The department is engaged in bringing world-class opportunities of higher education and research to the country so that Indian students are not found lacking when facing an international platform. For this, the government has launched joint ventures and signed MoUs to help the Indian student benefit from the world opinion. The technical education system in the country can be broadly classified into three categories – Central Government funded institutions, State Government/State-funded institutions Self-financed institutions. The 122 Centrally funded institution of technical and science education are as under: List of CFTIs (Centrally Funded Technical Institutions): IIITs (4 - Allahabad, Gwalior, Jabalpur, Kancheepuram), IITs (16), IIMs (13), IISc, IISER (5), NITs (30), NITTTRs (4), and 9 others (SPA, ISMU, NERIST, SLIET, NITIE NIFFT, CIT) Organisational structure.
+		</p>
+		<hr>
+	</div>
+
+	<div id="budget-table">
+		<h5>Budget Information : </h2>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Ministry Name</th>
+					<th>Total Budget Sanctioned</th>
+					<th>Year</th>
+					<th>Amount Spent for NER</th>
+					<th>Spent Amount More/Less than required</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%budgets.forEach(function(budget){%>
+					<%if(budget.ministry === ministry){%>
+						<tr class="active success">
+							<td><%=budget.ministry%></td>
+							<td><%=budget.total%></td>
+							<td><%=budget.year%></td>
+							<td><%=budget.amountSpent%></td>
+							<td><%=budget.amountDifference%></td>
+						</tr>
+					<%}%>
+				<%});%>	
+			</tbody>
+		</table>
+	</div>
+				
+
+
+	<h5>Projects:</h5>
+
+	<div class="row ministry_project">
+            <% projects.forEach(function(project){ %>
+            	<%if(project.ministryName === ministry){%>
+		            <div class="col-3-home">
+		                <div class="thumbnail">
+		                	 <img src="<%= project.image %>" alt="Project" />
+		                    <div class="caption">
+		                    	<h4><%= project.title %></h4>
+		                    </div>
+		                    <p>
+		                        <a href="/projects/<%= project._id %>" class="btn btn-primary">More Info</a>
+		                    </p>
+						</div>
+		            </div>
+	            <%}%>
+             <% }); %>
+	</div>
+</div>
+	
+
+<% include ../partials/footer %>

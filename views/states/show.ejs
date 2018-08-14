@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+<div class="container ministry-container">	
+
+
+	<div class="page-header ministry-header">
+		<h4><%=state.title%></h4>
+		<h5><%=state.tag%></h5>
+	</div>
+				
+
+	<div >
+		<div class="row img-container">
+			<div id="ministry_image">
+				<img src="<%=state.image%>" alt="<%=state.title%>" class="img-responsive">	
+			</div>
+		</div>
+	</div>	
+
+	
+	
+
+	<div class="para">
+		<p>
+			<%=state.description%>
+		</p>	
+	</div>
+
+</div>
+
+	
+
+<% include ../partials/footer %>

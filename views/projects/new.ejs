@@ -1,0 +1,45 @@
+<% include ../partials/header %>
+
+<div class="container" id="project-form">
+    
+
+        <div class="form-container">
+            <h4>Add A New Project</h4>
+            <form action="/projects" method="POST" id="new_project" enctype = "multipart/form-data"> 
+                    <label for="title">Title :</label>
+                    <input class="" type="text" name="title" placeholder="Title" required />
+                    
+                    <%if(currentUser.username === "modoner"){%>
+                        <label for="ministry">Ministry :</label>
+                        <input type="text" name="ministry" placeholder="Ministry" required>
+                    <%}%>
+                    
+                    <!-- <label for="">Upload an image to showcase the project:</label> -->
+                    <label for="image_file" >Image : </label>
+                    <input  type="file" name="image_file" accept="*/image">
+               
+<!--                     <span>Or, paste URL :  </label>    <input type="text" name="image_url" placeholder="URL" required > -->
+               
+                    <label for="head">Head :</label>
+                    <input class="" type="text" name="head" placeholder="Headed By">
+                
+                    <label for="budget">Sanctioned Budget :</label>
+                    <input class="" type="text" name="budget" placeholder="Budget" required >
+               
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" name="start_date" required >
+               
+                    <label for="end_date">Estimated Completion Date:</label>
+                    <input type="date" name="end_date" required >
+                    
+                    <label for="description">Description : </label>
+                    <textarea name="description" placeholder="Description" required ></textarea>
+               
+                    <button class="btn-submit">Submit</button>
+                </div>
+             </form>
+         </div>
+
+</div>
+
+<% include ../partials/footer %>

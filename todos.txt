@@ -1,0 +1,7 @@
+# Remove hrs from comments - done
+# Default ministry value in ministry forms
+# Flash messages with ajax - done
+# Email verification - done
+# Forgot password - done
+# Error page - done
+# Make responsive - done

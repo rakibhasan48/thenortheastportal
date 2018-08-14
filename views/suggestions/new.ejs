@@ -1,0 +1,23 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="form-container">
+    <h4>Post Suggestion</h4>
+        <form action="/suggestions" method="POST" id="suggestion-form">
+            
+                 <label for="suggestion[title]"> Heading: </label>
+                 <input type="text" name="suggestion[title]">
+           
+            
+                 <textarea placeholder="Write Your Thoughts" name="suggestion[text]"></textarea>
+
+            <label for="suggestion[ministry]">Ministry :</label>
+
+                <input type="text" name="suggestion[ministry]">
+                
+                <button class="btn-submit">Submit Suggestion</button>
+        </form> 
+    </div>  
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,83 @@
+<% include ../partials/header %>
+
+<div class="container ministry-container">
+	<div class="page-header ministry-header">
+		<h4><%=ministry%></h4>
+	</div>			
+
+	<div>
+		<div class="row img-container">
+			<img class="img-responsive" src="http://recruitmentvoice.com/wp-content/uploads/2016/08/Ministry-of-Road-Transport-and-Highways.jpg" alt="<%=ministry%>">	
+		</div>
+	</div>
+
+	<div class="project-desc">
+		<li ><strong>Website:</strong> <a href="shipping.nic.in"> shipping.nic.in</a></li>
+		<li><strong>Formed:</strong> July 1942</li>
+		<li><strong>Jurisdiction:</strong> India</li>
+		<li><strong>Headquarters:</strong> Parivahan Bhavan, 1, Parliament Street, New Delhi - 110 001</li>
+		<li><strong>Cabinet minister:</strong> Nitin Gadkari</li>
+		<li><strong>Minister of state:</strong> Pon Radhakrishnan, Mansukh L. Mandaviya</li>	
+	</div>
+	
+
+	<div class="para">
+		<p>
+			The Ministry of Road Transport and Highways, a ministry of the Government of India, is the apex body for formulation and administration of the rules, regulations and laws relating to road transport, and transport research, in order to increase the mobility and efficiency of the road transport system in India. Road transport is a critical infrastructure for economic development of the country. It influences the pace, structure and pattern of development. In India, roads are used to transport over 60% of the total goods and 85% of the passenger traffic. Hence, development of this sector is of paramount importance for the India and accounts for a significant part in the budget. Since May 2014, the Minister for Road Transport and Highways is Nitin Gadkari.The Department of War Transport was formed in July, 1942, by the bifurcation of the then Department Of Communications into two Departments:[2] (i) Department of Posts (ii) Department of War Transport. Functions[edit] The functions allocated to the Department of War Transport include Major Ports, Railways Priorities, utilization of road and water transport, Petrol rationing and Producer Gas. Broadly speaking, the functions of the War Transport Department were to coordinate the demands for transport in war time, Coastal Shipping and the administration and development of major ports. Later, the planning of export was undertaken as a corollary to the Departments control of transport priorities also.The Secretary (Road Transport & Highways) is assisted Joint Secretary (Road Transport),Director General (Road Development),Financial Advisor,Advisor(Transport Research).[3] Joint Secretary looks after transport administration, public grievances, vigilance road safety and co-ordination & public relations[3] Accounts Wing is headed by Chief Controller of Accounts who is responsible for accounts budget, work and study.[3] Advisor (Transport Research) renders necessary data support to various wings of the Ministry for policy planning,transport co-ordination,economic and statistical analysis on various modes of transport with which the ministry is concerned.[3] Director General (Road Development ) is responsible for Development & Maintenance of National Highways apart from Central Sector roads and Central road funds.
+		</p>
+		<hr>
+	</div>
+
+	<div id="budget-table">
+		<h5>Budget Information : </h2>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Ministry Name</th>
+					<th>Total Budget Sanctioned</th>
+					<th>Year</th>
+					<th>Amount Spent for NER</th>
+					<th>Spent Amount More/Less than required</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%budgets.forEach(function(budget){%>
+					<%if(budget.ministry === ministry){%>
+						<tr class="active success">
+							<td><%=budget.ministry%></td>
+							<td><%=budget.total%></td>
+							<td><%=budget.year%></td>
+							<td><%=budget.amountSpent%></td>
+							<td><%=budget.amountDifference%></td>
+						</tr>
+					<%}%>
+				<%});%>	
+			</tbody>
+		</table>
+	</div>
+				
+
+
+	<h5>Projects:</h5>
+
+	<div class="row ministry_project">
+            <% projects.forEach(function(project){ %>
+            	<%if(project.ministryName === ministry){%>
+		            <div class="col-3-home">
+		                <div class="thumbnail">
+		                	 <img src="<%= project.image %>" alt="Project" />
+		                    <div class="caption">
+		                    	<h4><%= project.title %></h4>
+		                    </div>
+		                    <p>
+		                        <a href="/projects/<%= project._id %>" class="btn btn-primary">More Info</a>
+		                    </p>
+						</div>
+		            </div>
+	            <%}%>
+             <% }); %>
+	</div>
+</div>
+	
+
+<% include ../partials/footer %>
