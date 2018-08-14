@@ -9,10 +9,10 @@ testLables = np.load(testLable)
 
 maxSeqLength = 250
 batchSize = 24
-lstmUnits = 64
+lstmUnits = 256
 numClasses = 2
 iterations = 1000000000
-trainCount = len(testFeatures)
+trainCount = len(trainFeatures)
 train = 0
 test = 0
 numDimensions = 300  # Dimensions for each word vector
@@ -23,17 +23,21 @@ sess = tf.InteractiveSession()
 def getTrainBatch():
     global train
     try:
-        if (train + batchSize >= trainCount):
+        if train + batchSize >= trainCount:
             train = 0
         lable = trainLables[train:train + batchSize]
-        arr = testFeatures[train:train + batchSize]
+        arr = trainFeatures[train:train + batchSize]
         train += batchSize
+
 
     except:
         lable = trainLables[train:len(trainLables)]
-        arr = testFeatures[train:len(trainFeatures)]
+        arr = trainFeatures[train:len(trainFeatures)]
         train = 0
+        print("in exception ",train)
     return arr, lable
+
+
 
 
 def getTestBatch():
@@ -89,7 +93,7 @@ def create_model():
 
     for i in range(iterations):
         # Next Batch of reviews
-        nextBatch, nextBatchLabels = getTrainBatch();
+        nextBatch, nextBatchLabels = getTrainBatch()
         sess.run(optimizer, {input_data: nextBatch, labels: nextBatchLabels})
 
         # Write summary to Tensorboard
@@ -98,15 +102,19 @@ def create_model():
             writer.add_summary(summary, i)
 
         # Save the network every 10,000 training iterations
-        if i % 10000 == 0 and i != 0:
+        if i % 1000 == 0 and i != 0:
             save_path = saver.save(sess, prefix+"models/pretrained_lstm.ckpt", global_step=i)
             print("saved to %s" % save_path)
     writer.close()
 
     saver = tf.train.Saver()
-    saver.restore(sess, tf.train.latest_checkpoint('models'))
+    saver.restore(sess, tf.train.latest_checkpoint(Model))
 
     iterations = 10
     for i in range(iterations):
         nextBatch, nextBatchLabels = getTestBatch();
         print("Accuracy for this batch:", (sess.run(accuracy, {input_data: nextBatch, labels: nextBatchLabels})) * 100)
+
+
+if __name__ == "__main__":
+    create_model()
