@@ -4,7 +4,7 @@ from Sentimental_Analysis.info import WordVector,WordList,Model
 numDimensions = 300
 maxSeqLength = 250
 batchSize = 24
-lstmUnits = 64
+lstmUnits = 256
 numClasses = 2
 
 
