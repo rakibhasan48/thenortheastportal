@@ -1,0 +1,10 @@
+.idea/*
+fjdbf.py
+a.txt
+File/
+__pycache__
+*/models/*
+*/dataset/*
+*/processed data/*
+*/tensorboard/*
+*/word/*
