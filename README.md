@@ -1,3 +1,5 @@
+# Demo site deployed on herokuapp : http://thenortheastportal.herokuapp.com/
+
 # The North East Portal
 
 A web portal created with node.js and express. MongoDB is used as the database.
